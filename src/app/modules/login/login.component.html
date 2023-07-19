@@ -1,0 +1,18 @@
+<div class="container">
+  <form class="login-form" [formGroup]="loginForm">
+    <h1>Login</h1>
+    <input
+      type="text"
+      placeholder="Username"
+      required="required"
+      formControlName="username"
+    />
+    <input
+      type="password"
+      placeholder="Password"
+      required="required"
+      formControlName="password"
+    />
+    <button type="submit" (click)="login()" [disabled]="!loginForm.valid">Log in</button>
+  </form>
+</div>
