@@ -5,6 +5,66 @@
   </div>
 </div>
 
-<p>
-  dashboard works!
-</p>
+<div class="container">
+  <div *ngIf="!jsonData" class="upload-file">
+    <form>
+      <input
+        id="file"
+        type="file"
+        (change)="onFileChange($event)"
+        accept=".csv"
+      />
+    </form>
+  </div>
+
+  <div class="answers" *ngIf="maxTotal || minTotal">
+    <div class="state-card">
+      <div class="content">
+        <span class="tag min-state"
+          >Estado(s) con menor acumulado a la fecha.</span
+        >
+        <p>
+          <span>Estado(s) : {{ minState }}</span>
+          <span>Total : {{ minTotal }}</span>
+        </p>
+      </div>
+    </div>
+    <div class="state-card">
+      <div class="content">
+        <span class="tag max-state"
+          >Estado(s) con mayor acumulado a la fecha.</span
+        >
+        <p>
+          <span>Estado(s) : {{ maxState }}</span>
+          <span>Total : {{ maxTotal }}</span>
+        </p>
+      </div>
+    </div>
+    <div class="state-card">
+      <div class="content">
+        <span class="tag worst-state">¿Cuál fue el estado más afectado?</span>
+        <p>
+          <span
+            >El estado mas afectado fue
+            <span class="strong">{{ worstState.label }}</span> esto debido a su
+            alto procentaje mortalidad el cual supera el :
+            <span class="strong">{{
+              worstState.percentage | percent
+            }}</span></span
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="canvas-container" *ngIf="maxTotal || minTotal">
+    <canvas
+      baseChart
+      style="width: 50vw"
+      [data]="totalData"
+      [type]="'doughnut'"
+      [options]="chartOptions"
+    >
+    </canvas>
+  </div>
+</div>

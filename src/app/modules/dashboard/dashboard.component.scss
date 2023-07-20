@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgb(255 255 255);
   color: #fff;
   display: flex;
   align-items: center;
@@ -23,5 +23,99 @@
       border: solid #ff3a3a;
       cursor: pointer;
     }
+  }
+}
+
+.container {
+  display: grid;
+  gap: 20px;
+  .upload-file {
+    padding: 10px 0 0 10px;
+    input[type="file"] {
+      width: 350px;
+      max-width: 100%;
+      color: #444;
+      padding: 5px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #555;
+    }
+    input[type="file"]::file-selector-button {
+      margin-right: 20px;
+      border: none;
+      background: #084cdf;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s ease-in-out;
+    }
+
+    input[type="file"]::file-selector-button:hover {
+      background: #0d45a5;
+    }
+  }
+
+  .answers {
+    @media (width<=700px) {
+      display: grid;
+    }
+    display: flex;
+    padding-top: 10px;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    .state-card {
+      border-radius: 16px;
+      box-shadow: 0 30px 30px -25px rgba(65, 51, 183, 0.25);
+      max-width: 300px;
+      background-color: #eeeeee;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      border: solid 1px #b7b7b7;
+    }
+    .state-card .tag {
+      display: inline-block;
+      color: #eeeeee;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 0.5em 0.75em;
+      line-height: 1;
+      border-radius: 6px;
+    }
+    .max-state {
+      background-color: #ff3737;
+    }
+    .min-state {
+      background-color: #2bb41f;
+    }
+    .worst-state {
+      background-color: #7c7e7c;
+    }
+    .tag + * {
+      margin-top: 1rem;
+    }
+    .state-card p {
+      display: grid;
+      gap: 10px;
+      color: #202020;
+      font-size: 14px;
+    }
+    .state-card p + * {
+      margin-top: 1.25rem;
+    }
+  }
+  .strong {
+    font-weight: bold;
+  }
+  .canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // width: 100vw;
+    height: 100vh;
   }
 }
