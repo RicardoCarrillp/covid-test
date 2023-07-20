@@ -12,8 +12,8 @@ constructor() { }
     return !!localStorage.getItem('isLogged');
   }
 
-  login(): void {
-    localStorage.setItem('isLogged', 'JWT');
+  login(username:string): void {
+    localStorage.setItem('isLogged', `JWT_${username}`);
     this.isLoginSubject.next(true);
   }
 
