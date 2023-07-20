@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     })
     this.subscription = authService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
       if (isLoggedIn) this.router.navigate(['/dashboard'])
-
     })
   }
 

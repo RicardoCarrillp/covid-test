@@ -9,7 +9,6 @@ import { NgChartsModule } from 'ng2-charts';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    ReactiveFormsModule,
     FormsModule,
     NgChartsModule
 

@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/services/auth.service';
@@ -29,7 +28,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   };
 
   subscription!: Subscription;
-  inputFile!: FormControl;
   jsonData!: any;
   sumTotalByState!: any;
   dataForState: any = [];
