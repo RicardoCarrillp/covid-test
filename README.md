@@ -1,27 +1,56 @@
 # SmartSoftPrueba
+## COVID-19 Dashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+This is an Angular project that includes a basic login section with a username and password to access the dashboard. The dashboard section allows the user to upload a CSV file containing COVID-19 deaths data for each state in the US and presents relevant information and visualizations.
 
-## Development server
+### Getting Started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To run this project locally, follow the steps below:
 
-## Code scaffolding
+### 1. Clone the repository:
+`git clone https://github.com/RicardoCarrillp/smartSoft_Prueba)https://github.com/RicardoCarrillp/smartSoft_Prueba`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`cd covid19-dashboard`
 
-## Build
+### 2. Install dependencies:
+`npm install` 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 3. Run the Angular development server:
+`ng serve`
 
-## Running unit tests
+#### Open your browser and go to http://localhost:4200 to access the application.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Login
+To access the dashboard, users need to log in using their username and password.
 
-## Running end-to-end tests
+## Dashboard Section
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### CSV Data Upload
+Upon accessing the dashboard, users will find a button to upload a CSV file containing COVID-19 deaths data for each state in the US. The data will be extracted from the uploaded file and displayed on the dashboard. This step is performed only once, preferably during the initial project run.
 
-## Further help
+### Data Analysis
+After reading the uploaded CSV file, the following questions will be answered and displayed on the dashboard:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+a. State with the highest total deaths to date.
+
+b. State with the lowest total deaths to date.
+
+c. Most affected state (with an explanation).
+
+d. Circular chart representation of the percentage of total deaths vs. the total population for each state. (Implementing a library for this visualization)
+
+### Libraries Used
+The project utilizes the following libraries:
+
+- **Chart.js**: A charting library to create visualizations, including the circular chart for percentage representation.
+- **Paparse**: A CSV parsing library used to extract data from the uploaded CSV file.
+- **Rxjs**: A library for reactive programming used in Angular applications.
+
+
+
+## Contributors
+
+- Ricardo Carrillo(https://github.com/ricardocarrillp)
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
