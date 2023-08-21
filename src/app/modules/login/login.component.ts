@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { Login } from 'src/app/models/login.model';
+import {Subscription, tap} from 'rxjs';
 import { AuthService } from 'src/services/auth.service';
 
 @Component({
@@ -18,9 +17,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       username:['', Validators.required],
       password:['', Validators.required],
     })
-    this.subscription = authService.isLoggedIn().subscribe((isLoggedIn: boolean) => {
-      if (isLoggedIn) this.router.navigate(['/dashboard'])
-    })
   }
 
   ngOnDestroy() {
@@ -30,7 +26,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login(){
-    this.authService.login(this.loginForm.value.username)
+    this.subscription= this.authService.login(this.loginForm.value.username).pipe(
+      tap(() => this.router.navigate(['dashboard'])),
+      tap(()=> localStorage.removeItem('dataForState'))
+    ).subscribe();
   }
 
 }
