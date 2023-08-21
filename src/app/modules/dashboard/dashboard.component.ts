@@ -1,9 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Subscription, tap} from 'rxjs';
+import { Subscription, tap} from 'rxjs';
 import {AuthService} from 'src/services/auth.service';
 import {Papa} from 'ngx-papaparse';
 import {ChartData, ChartOptions} from 'chart.js';
+import {saveAs} from "file-saver";
+import {DashboardService} from "../../../services/dashboard.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -42,7 +44,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     public authService: AuthService,
     private router: Router,
-    private papa: Papa
+    private papa: Papa,
+    private dashboardService:DashboardService
   ) {}
 
   onFileChange(event: any) {
@@ -152,7 +155,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.jsonData = JSON.parse(localStorage.getItem('dataForState')!);
     if (this.jsonData) this.getMinAndMaxTotal(this.jsonData);
   }
-
+  downloadCSV(): void {
+    this.dashboardService
+      .download('https://raw.githubusercontent.com/RicardoCarrillp/csv_covid/main/time_series_covid19_deaths_US.csv')
+      .subscribe(blob => saveAs(blob, 'covid stats.csv')
+      )
+    }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

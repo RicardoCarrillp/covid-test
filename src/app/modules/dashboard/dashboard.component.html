@@ -1,7 +1,9 @@
 <div class="nav">
   <h3>Dashboard</h3>
-  <div class="logout">
-    <button (click)="logout()">Cerrar sesión</button>
+
+  <div class="buttons">
+    <button   *ngIf="!jsonData"  class="download-button" (click)="downloadCSV()" >Descargar CVS</button>
+    <button class="logout-button" (click)="logout()">Cerrar sesión</button>
   </div>
 </div>
 

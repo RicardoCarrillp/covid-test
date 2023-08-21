@@ -14,14 +14,22 @@
     padding: 0 16px;
     color: #575757;
   }
-  .logout {
+  .buttons {
     padding-right: 10px;
-    button {
-      background-color: #ff3a3a;
+    display: flex;
+    gap: 2vh;
+    button{
       border-radius: 5px;
       color: #fff;
-      border: solid #ff3a3a;
       cursor: pointer;
+    }
+    .logout-button {
+      background-color: #ff3a3a;
+      border: solid #ff3a3a;
+    }
+    .download-button {
+      background-color: #5ac78b;
+      border: solid #5ac78b;
     }
   }
 }
