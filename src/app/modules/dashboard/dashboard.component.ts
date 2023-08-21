@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { AuthService } from 'src/services/auth.service';
-import { Papa } from 'ngx-papaparse';
-import { ChartData, ChartOptions } from 'chart.js';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Subscription, tap} from 'rxjs';
+import {AuthService} from 'src/services/auth.service';
+import {Papa} from 'ngx-papaparse';
+import {ChartData, ChartOptions} from 'chart.js';
 
 @Component({
   selector: 'app-dashboard',
@@ -43,14 +43,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     public authService: AuthService,
     private router: Router,
     private papa: Papa
-  ) {
-    this.subscription = authService
-      .isLoggedIn()
-      .subscribe((isLoggedIn: boolean) => {
-        if (!isLoggedIn) this.router.navigate(['/login']);
-      });
-
-  }
+  ) {}
 
   onFileChange(event: any) {
     const file = event.target.files[0];
@@ -92,7 +85,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       const population = Number(obj.population);
 
       if (!dataState[name]) {
-        dataState[name] = { name, total: 0, population: 0 };
+        dataState[name] = {name, total: 0, population: 0};
       }
 
       dataState[name].total = dataState[name].total + total;
@@ -149,8 +142,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.authService.logout();
-    localStorage.removeItem('dataForState');
+    this.subscription = this.authService.logout().pipe(
+      tap(() => this.router.navigate(['login']) )
+    ).subscribe();
+
   }
 
   ngOnInit() {
